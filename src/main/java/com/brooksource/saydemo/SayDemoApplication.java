@@ -1,6 +1,8 @@
 package com.brooksource.saydemo;
 
+import com.brooksource.saydemo.model.Customer;
 import com.brooksource.saydemo.model.Transaction;
+import com.brooksource.saydemo.repository.CustomerRepository;
 import com.brooksource.saydemo.repository.TransactionRepository;
 import com.brooksource.saydemo.util.DateStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +28,17 @@ public class SayDemoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner setUpRepository(TransactionRepository transactionRepository)
+	public CommandLineRunner setUpRepository(CustomerRepository customerRepository,
+											 TransactionRepository transactionRepository)
 	{
 		return (args) -> {
 			Instant now = Instant.now();
-			// customerRepository.saveAll(Arrays.asList(
-			// new Customer("Basic Boundary Cases"),
-			// new Customer("Basic Cumulative Cases"),
-			// new Customer("Large Cumulative Transactions"),
-			// new Customer("Multiple Transactions")
+			 customerRepository.saveAll(Arrays.asList(
+				 new Customer("Basic Boundary Cases"),
+				 new Customer("Basic Cumulative Cases"),
+				 new Customer("Large Cumulative Transactions"),
+				 new Customer("Multiple Transactions"))
+			 );
 			transactionRepository.saveAll(
 					Arrays.asList(new Transaction(
 							Timestamp.from(now.minus(61, ChronoUnit.DAYS)),

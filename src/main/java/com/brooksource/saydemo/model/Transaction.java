@@ -33,31 +33,16 @@ public class Transaction {
     public Long getId() {
         return id;
     }
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-
     public Timestamp getTimestamp() {
         return timestamp;
     }
-
-//    public void setTimestamp(Timestamp timestamp) {
-//        this.timestamp = timestamp;
-//    }
 
     public Long getCustomerId() {
         return customerId;
     }
 
-//    public void setCustomerId(Long customerId) {
-//        this.customerId = customerId;
-//    }
 
     public BigDecimal getAmount() {
         return amount;
     }
-
-//    public void setAmount(BigDecimal amount) {
-//        this.amount = amount;
-//    }
 }
