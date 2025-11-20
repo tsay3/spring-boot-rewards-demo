@@ -48,7 +48,7 @@ class TransactionRepositoryTest {
     public void whenFindById_thenReturnTransaction() {
 
         Transaction j1 = new Transaction(Timestamp.from(Instant.now().minus(20, ChronoUnit.MINUTES)),
-                1L, new BigDecimal(80.00));
+                1L, new BigDecimal("80.00"));
 
         entityManager.persistAndFlush(j1);
 

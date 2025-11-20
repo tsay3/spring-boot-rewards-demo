@@ -15,10 +15,10 @@ public class TransactionService {
 
     public int getPointsForMonth(Long id, int month) {
         int total = 0;
-        List list = repo.findByMonth(month);
-        for (Object oneItem : list) {
-            Transaction oneTransaction = (Transaction) oneItem;
-            if (oneTransaction.getCustomerId() == id) {
+        List<Transaction> list = repo.findByMonthValue(month);
+        for (Transaction oneTransaction : list) {
+//            Transaction oneTransaction = (Transaction) oneItem;
+            if (oneTransaction.getCustomerId().equals(id)) {
                 total += getPointsFromAmount(oneTransaction.getAmount());
             }
         }
