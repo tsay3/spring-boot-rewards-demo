@@ -1,4 +1,4 @@
-package com.brooksource.say_demo;
+package com.brooksource.saydemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
