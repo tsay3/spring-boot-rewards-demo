@@ -17,7 +17,6 @@ public class TransactionService {
         int total = 0;
         List<Transaction> list = repo.findByMonthValue(month);
         for (Transaction oneTransaction : list) {
-//            Transaction oneTransaction = (Transaction) oneItem;
             if (oneTransaction.getCustomerId().equals(id)) {
                 total += getPointsFromAmount(oneTransaction.getAmount());
             }

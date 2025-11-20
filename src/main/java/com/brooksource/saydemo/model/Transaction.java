@@ -2,7 +2,6 @@ package com.brooksource.saydemo.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.time.ZoneId;
 
 import com.brooksource.saydemo.util.DateStorage;
 import jakarta.persistence.*;
@@ -28,13 +27,6 @@ public class Transaction {
         this.customerId = customerId;
         this.amount = amount;
         this.monthValue = DateStorage.timestampToMonth(timestamp);
-    }
-
-    public Long getId() {
-        return id;
-    }
-    public Timestamp getTimestamp() {
-        return timestamp;
     }
 
     public Long getCustomerId() {

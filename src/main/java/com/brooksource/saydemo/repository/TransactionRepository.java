@@ -8,9 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
-
-//    @Query("SELECT id FROM transaction WHERE (" +
-//            "MONTH(timestamp) + 12 * YEAR(timestamp)" +
-//            ") = ?#{month}")
     List<Transaction> findByMonthValue(int month);
 }

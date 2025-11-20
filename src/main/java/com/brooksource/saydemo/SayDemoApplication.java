@@ -4,8 +4,6 @@ import com.brooksource.saydemo.model.Customer;
 import com.brooksource.saydemo.model.Transaction;
 import com.brooksource.saydemo.repository.CustomerRepository;
 import com.brooksource.saydemo.repository.TransactionRepository;
-import com.brooksource.saydemo.util.DateStorage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +14,6 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
-import java.util.Collections;
 
 @SpringBootApplication
 public class SayDemoApplication {
@@ -43,7 +40,7 @@ public class SayDemoApplication {
 					Arrays.asList(new Transaction(
 							Timestamp.from(now.minus(61, ChronoUnit.DAYS)),
 							1L,
-							new BigDecimal("50.00")),
+							new BigDecimal("50.01")),
 					new Transaction(
 							Timestamp.from(now.minus(31, ChronoUnit.DAYS)),
 							1L,
@@ -51,7 +48,7 @@ public class SayDemoApplication {
 					new Transaction(
 							Timestamp.from(now.minus(2, ChronoUnit.DAYS)),
 							1L,
-							new BigDecimal("140.00")),
+							new BigDecimal("101.00")),
 					new Transaction(
 							Timestamp.from(now.minus(60, ChronoUnit.DAYS)),
 							2L,
@@ -96,6 +93,10 @@ public class SayDemoApplication {
 							Timestamp.from(now.minus(2, ChronoUnit.DAYS)),
 							4L,
 							new BigDecimal("155.45")),
+					new Transaction(
+							Timestamp.from(now.minus(2, ChronoUnit.DAYS)),
+							4L,
+							new BigDecimal("53.26")),
 					new Transaction(
 							Timestamp.from(now.minus(1, ChronoUnit.DAYS)),
 							4L,
