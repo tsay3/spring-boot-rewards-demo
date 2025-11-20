@@ -22,9 +22,9 @@ public class RewardsController {
         int currentMonth = DateStorage.timestampToMonth(Instant.now());
         for (int i = currentMonth - 2; i <= currentMonth; i++) {
             int monthsPoints = service.getPointsForMonth(id, i);
-//            int monthsPoints = 0;
             returnHTML.append("<p>" + DateStorage.monthValueToString(i));
             returnHTML.append(": " + monthsPoints + " points</p>");
+            totalPoints += monthsPoints;
         }
         returnHTML.append("<p><b>Total: " + totalPoints + " points</b></p>");
         returnHTML.append("<i>Generated on " +
