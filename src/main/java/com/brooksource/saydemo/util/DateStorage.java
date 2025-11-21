@@ -19,7 +19,6 @@ public class DateStorage {
     public static String monthValueToString(int monthValue) {
         int year = monthValue / 12;
         int month = monthValue % 12;
-        if (month == 0) month = 12;
         Date date = new Date(year, month, 1);
         return new SimpleDateFormat("MMM yyyy").format(date);
     }
