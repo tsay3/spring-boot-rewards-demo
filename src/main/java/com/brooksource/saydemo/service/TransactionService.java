@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.brooksource.saydemo.model.Transaction;
 
 import java.math.BigDecimal;
-import java.sql.Array;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,21 +21,20 @@ public class TransactionService {
     @Autowired
     CustomerService customerService;
     @Autowired
-    CustomerRepository customerRepo;
+    CustomerRepository customerRepository;
     @Autowired
-    TransactionRepository repo;
+    TransactionRepository transactionRepository;
 
     public String getPointsResponseForAllUsers() {
         StringBuilder returnHTML = new StringBuilder("<h1>All Customers</h1>");
-//        returnHTML.append("TO DO: add an endpoint to show ALL customers' points");
-
         int currentMonth = DateStorage.timestampToMonth(Instant.now());
+
         // populate the points map
         List<Map<Long, Integer>> allCustomerPoints = new ArrayList<>();
         Map<Long, Integer> totalPoints = new HashMap<>();
         for (int i = currentMonth - 2; i <= currentMonth; i++) {
             Map<Long, Integer> customerPoints = new HashMap<>();
-            List<Transaction> allTransactions = repo.findByMonthValue(i);
+            List<Transaction> allTransactions = transactionRepository.findByMonthValue(i);
             for (Transaction t : allTransactions) {
                 Long id = t.getCustomerId();
                 int points = getPointsFromAmount(t.getAmount());
@@ -47,7 +45,7 @@ public class TransactionService {
         }
 
         // create a user table
-        List<Customer> allCustomers = customerRepo.findAll();
+        List<Customer> allCustomers = customerRepository.findAll();
         List<Long> allIds = new ArrayList<>();
         returnHTML.append("<table><tr><th></th>");
         for (Customer customer : allCustomers) {
@@ -108,7 +106,7 @@ public class TransactionService {
 
     private int getPointsForUserAndMonth(Long id, int month) {
         int total = 0;
-        List<Transaction> list = repo.findByMonthValue(month);
+        List<Transaction> list = transactionRepository.findByMonthValue(month);
         for (Transaction oneTransaction : list) {
             if (oneTransaction.getCustomerId().equals(id)) {
                 total += getPointsFromAmount(oneTransaction.getAmount());

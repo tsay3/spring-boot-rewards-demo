@@ -18,7 +18,7 @@ public class RewardsController {
     @Autowired
     TransactionService transactionService;
 
-    @GetMapping("/points")
+    @GetMapping("/points/")
     public String getAllPoints() {
         return transactionService.getPointsResponseForAllUsers();
     }
