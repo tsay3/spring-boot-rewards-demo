@@ -3,6 +3,7 @@ package com.brooksource.saydemo.util;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -19,7 +20,15 @@ public class DateStorage {
     public static String monthValueToString(int monthValue) {
         int year = monthValue / 12;
         int month = monthValue % 12;
-        Date date = new Date(year, month, 1);
+        LocalDate date = LocalDate.of(year, month, 1);
         return new SimpleDateFormat("MMM yyyy").format(date);
+    }
+
+    public static String generationMessage() {
+        StringBuilder returnHTML = new StringBuilder("<hr><i>Generated on ");
+        returnHTML.append(DateStorage.monthValueToString(
+                DateStorage.timestampToMonth(Instant.now())));
+        returnHTML.append("</i>");
+        return returnHTML.toString();
     }
 }
