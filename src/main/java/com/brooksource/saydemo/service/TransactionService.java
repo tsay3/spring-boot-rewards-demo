@@ -8,7 +8,10 @@ import com.brooksource.saydemo.model.Transaction;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TransactionService {
@@ -23,6 +26,17 @@ public class TransactionService {
         returnHTML.append("TO DO: add an endpoint to show ALL customers' points");
 
         int currentMonth = DateStorage.timestampToMonth(Instant.now());
+        List<Map<Long, Integer>> allCustomerPoints = new ArrayList<>();
+        for (int i = currentMonth - 2; i <= currentMonth; i++) {
+            Map<Long, Integer> customerPoints = new HashMap<>();
+            List<Transaction> allTransactions = repo.findByMonthValue(i);
+            for (Transaction t : allTransactions) {
+                Long id = t.getCustomerId();
+                int points = getPointsFromAmount(t.getAmount());
+                customerPoints.put(id, customerPoints.getOrDefault(id, 0) + points);
+            }
+            allCustomerPoints.add(customerPoints);
+        }
         return returnHTML.toString();
     }
 
